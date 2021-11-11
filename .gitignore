@@ -1,2 +1,6 @@
 # Ignore .NET binaries
 /obj
+/bin
+
+.fake
+.ionide
