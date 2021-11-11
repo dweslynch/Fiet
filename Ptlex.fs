@@ -8,7 +8,8 @@ open Fiet.Ptdata
 
 module Ptlex =
 
-    let private fromRGB r g b =
+    // Get a ColorRecord object from a set of rgb bytes
+    let private from_rgb r g b =
         match r, g, b with
             // Black
             | 0uy, 0uy, 0uy -> { Hue = Black; Lightness = Normal; }
@@ -36,11 +37,12 @@ module Ptlex =
             | 0xFFuy, 0xC0uy, 0xFFuy -> { Hue = Magenta; Lightness = Light; }
             | 0xFFuy, 0uy, 0xFFuy -> { Hue = Magenta; Lightness = Normal; }
             | 0xC0uy, 0uy, 0xC0uy -> { Hue = Magenta; Lightness = Dark; }
-            // Black
-            | _, _, _ -> { Hue = Black; Lightness = Normal; }
+            // White
+            | _, _, _ -> { Hue = White; Lightness = Normal; }
 
-    let private fromPixel (pixel : Rgba32) =
-        fromRGB pixel.R pixel.G pixel.B
+    let private from_pixel (pixel : Rgba32) =
+        from_rgb pixel.R pixel.G pixel.B
 
+    // Scan an ImageSharp image into a 2D ColorRecord array
     let scan (image : Image<Rgba32>) =
-        Array2D.init image.Width image.Height (fun x y -> fromPixel image.[x, y])
+        Array2D.init image.Width image.Height (fun x y -> from_pixel image.[x, y])

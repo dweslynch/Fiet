@@ -7,8 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Data.fs" />
     <Compile Include="Ptdata.fs" />
     <Compile Include="Ptlex.fs" />
+    <Compile Include="Ptparse.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

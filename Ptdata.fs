@@ -30,3 +30,9 @@ module Ptdata =
                 | { Hue = White; Lightness = _ } -> "White"
                 | { Hue = hue; Lightness = Normal } -> sprintf "%A" hue
                 | { Hue = hue; Lightness = lightness } -> sprintf "%A %A" lightness hue
+
+    type ColorBlock =
+        {
+            Color : ColorRecord;
+            Codels : (int * int) array;
+        }
